@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Shop - Bán Hàng Đẹp Mắt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        .banner {
+            background: linear-gradient(to right, #6b7280, #1f2937);
+            animation: slide 10s infinite;
+        }
+        @keyframes slide {
+            0% { background-position: 0 0; }
+            50% { background-position: 100% 0; }
+            100% { background-position: 0 0; }
+        }
+        #cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        #cart-modal.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">Demo Shop</div>
+            <ul class="flex space-x-6">
+                <li><a href="#home" class="text-gray-600 hover:text-blue-500">Trang chủ</a></li>
+                <li><a href="#products" class="text-gray-600 hover:text-blue-500">Sản phẩm</a></li>
+                <li><a href="#contact" class="text-gray-600 hover:text-blue-500">Liên hệ</a></li>
+            </ul>
+            <div class="flex items-center space-x-4">
+                <i id="cart-icon" class="fas fa-shopping-cart text-gray-600 cursor-pointer relative">
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </i>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Đăng nhập</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section id="home" class="banner h-96 flex items-center justify-center text-white text-center">
+        <div>
+            <h1 class="text-4xl font-bold mb-4">Chào Mừng Đến Với Demo Shop</h1>
+            <p class="text-lg mb-6">Khám phá các sản phẩm chất lượng với giá cả hợp lý!</p>
+            <a href="#products" class="bg-yellow-400 text-gray-800 px-6 py-3 rounded-full hover:bg-yellow-500">Mua sắm ngay</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Sản Phẩm Nổi Bật</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product Card -->
+                <div class="product-card bg-gray-100 rounded-lg shadow overflow-hidden">
+                    <img src="https://hmpro.vn/wp-content/uploads/2023/04/chup-anh-san-pham-binh-thanh-300x200.jpg" alt="Sản phẩm 1" class="product-img w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">Sản phẩm 1</h3>
+                        <p class="text-gray-600">199.000 VNĐ</p>
+                        <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 add-to-cart" data-name="Sản phẩm 1" data-price="199000" data-image="https://hmpro.vn/wp-content/uploads/2023/04/chup-anh-san-pham-binh-thanh-300x200.jpg">Thêm vào giỏ</button>
+                    </div>
+                </div>
+                <div class="product-card bg-gray-100 rounded-lg shadow overflow-hidden">
+                    <img src="https://hmpro.vn/wp-content/uploads/2023/04/chup-anh-san-pham-binh-thanh-300x200.jpg" alt="Sản phẩm 2" class="product-img w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">Sản phẩm 2</h3>
+                        <p class="text-gray-600">299.000 VNĐ</p>
+                        <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 add-to-cart" data-name="Sản phẩm 2" data-price="299000" data-image="https://hmpro.vn/wp-content/uploads/2023/04/chup-anh-san-pham-binh-thanh-300x200.jpg">Thêm vào giỏ</button>
+                    </div>
+                </div>
+                <div class="product-card bg-gray-100 rounded-lg shadow overflow-hidden">
+                    <img src="https://hmpro.vn/wp-content/uploads/2023/04/chup-anh-san-pham-binh-thanh-300x200.jpg" alt="Sản phẩm 3" class="product-img w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">Sản phẩm 3</h3>
+                        <p class="text-gray-600">399.000 VNĐ</p>
+                        <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 add-to-cart" data-name="Sản phẩm 3" data-price="399000" data-image="https://hmpro.vn/wp-content/uploads/2023/04/chup-anh-san-pham-binh-thanh-300x200.jpg">Thêm vào giỏ</button>
+                    </div>
+                </div>
+                <div class="product-card bg-gray-100 rounded-lg shadow overflow-hidden">
+                    <img src="https://hmpro.vn/wp-content/uploads/2023/04/chup-anh-san-pham-binh-thanh-300x200.jpg" alt="Sản phẩm 4" class="product-img w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">Sản phẩm 4</h3>
+                        <p class="text-gray-600">499.000 VNĐ</p>
+                        <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 add-to-cart" data-name="Sản phẩm 4" data-price="499000" data-image="https://hmpro.vn/wp-content/uploads/2023/04/chup-anh-san-pham-binh-thanh-300x200.jpg">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal">
+        <div class="bg-white rounded-lg w-full max-w-lg p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">Giỏ Hàng</h2>
+                <button id="close-cart" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="cart-items" class="max-h-64 overflow-y-auto">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            <div class="mt-4 flex justify-between items-center">
+                <p class="text-lg font-semibold">Tổng cộng: <span id="cart-total">0 VNĐ</span></p>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">Liên Hệ Với Chúng Tôi</h2>
+            <p class="text-lg mb-6">Hãy để lại thông tin, chúng tôi sẽ liên hệ với bạn sớm nhất!</p>
+            <div class="max-w-md mx-auto">
+                <input type="text" placeholder="Họ và tên" class="w-full mb-4 p-3 rounded border">
+                <input type="email" placeholder="Email" class="w-full mb-4 p-3 rounded border">
+                <textarea placeholder="Tin nhắn" class="w-full mb-4 p-3 rounded border h-32"></textarea>
+                <button class="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600">Gửi</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-4">© 2025 Demo Shop. All rights reserved.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-blue-400"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Cart functionality
+        let cart = [];
+        const cartModal = document.getElementById('cart-modal');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+        const cartIcon = document.getElementById('cart-icon');
+        const closeCart = document.getElementById('close-cart');
+
+        // Open cart modal
+        cartIcon.addEventListener('click', () => {
+            cartModal.classList.add('show');
+            renderCart();
+        });
+
+        // Close cart modal
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('show');
+        });
+
+        // Add to cart
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                const price = parseInt(button.getAttribute('data-price'));
+                const image = button.getAttribute('data-image');
+
+                // Check if product already in cart
+                const existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, image, quantity: 1 });
+                }
+
+                // Update cart count
+                cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+
+                // Show alert
+                alert(`${name} đã được thêm vào giỏ hàng!`);
+
+                // Render cart
+                renderCart();
+            });
+        });
+
+        // Render cart items
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-600">Giỏ hàng trống</p>';
+            } else {
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    cartItemsContainer.innerHTML += `
+                        <div class="flex items-center mb-4">
+                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+                            <div class="ml-4 flex-1">
+                                <h3 class="text-lg">${item.name}</h3>
+                                <p class="text-gray-600">${(item.price * item.quantity).toLocaleString()} VNĐ (x${item.quantity})</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            cartTotal.textContent = total.toLocaleString() + ' VNĐ';
+        }
+    </script>
+</body>
+</html>
